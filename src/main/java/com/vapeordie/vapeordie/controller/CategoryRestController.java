@@ -14,24 +14,29 @@ import java.util.List;
 public class CategoryRestController {
     @Autowired
     private CategoryService categoryService;
+
     @GetMapping("/categories")
-    public List<Category> getAllCategories(){
+    public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }
+
     @GetMapping("/categories/{id}")
-    public Category getCategoryById(@PathVariable("id") long id){
+    public Category getCategoryById(@PathVariable("id") long id) {
         return categoryService.getCategoryById(id);
     }
+
     @PostMapping("/categories")
-    public Category addCategory(@RequestBody Category category){
+    public Category addCategory(@RequestBody Category category) {
         return categoryService.addCategory(category);
     }
+
     @PutMapping("/categories/{id}")
-    public void updateCategory(@Valid @RequestBody Category category, @PathVariable("id") long id){
+    public void updateCategory(@Valid @RequestBody Category category, @PathVariable("id") long id) {
         categoryService.updateCategory(category, id);
     }
+
     @DeleteMapping("categories/{id}")
-    public void deleteCategory(@PathVariable("id") long id){
+    public void deleteCategory(@PathVariable("id") long id) {
         categoryService.deleteCategory(id);
     }
 
