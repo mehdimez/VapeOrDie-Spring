@@ -2,6 +2,7 @@ package com.vapeordie.vapeordie.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 public class User {
@@ -25,6 +26,8 @@ public class User {
     private String dateOfBirth;
     @Column(nullable = true)
     private String gender;
+    @OneToMany(mappedBy = "user")
+    private List<OrderProduct> orders;
 
     public User() {
 
@@ -126,5 +129,13 @@ public class User {
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public List<OrderProduct> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderProduct> orders) {
+        this.orders = orders;
     }
 }

@@ -15,6 +15,11 @@ public class Product {
     private int quantity;
     private String description;
     private String image;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "id_category", nullable = false)
+    private Category category;
+
     public Product() {
 
     }
@@ -68,10 +73,6 @@ public class Product {
         this.description = description;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_category", nullable = false)
-    private Category category;
 
     public Category getCategory() {
         return category;
