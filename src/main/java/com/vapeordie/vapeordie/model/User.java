@@ -11,19 +11,19 @@ public class User {
     private long idUser;
     @Column( unique = true)
     private String email;
-    //@Column(nullable = true)
+    @Column(nullable = true)
     private String firstName;
-   // @Column(nullable = true)
+   @Column(nullable = true)
     private String lastName;
-    //@Column(nullable = true)
+    @Column(nullable = true)
     private String phoneNumber;
-    //@Column(nullable = true)
+    @Column(nullable = true)
     private String adress;
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String password;
-    //@Column(nullable = true)
+    @Column(nullable = true)
     private String dateOfBirth;
-    //@Column(nullable = true)
+    @Column(nullable = true)
     private String gender;
     @OneToMany(mappedBy = "user")
     private List<OrderProduct> orders;
