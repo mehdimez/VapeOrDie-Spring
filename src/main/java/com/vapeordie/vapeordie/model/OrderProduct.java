@@ -10,6 +10,8 @@ public class OrderProduct {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOrder;
     private Date orderDate;
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "idUser")
     private User user;
@@ -39,6 +41,14 @@ public class OrderProduct {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<OrderLine> getOrderLines() {
