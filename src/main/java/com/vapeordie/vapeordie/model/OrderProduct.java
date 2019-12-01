@@ -11,7 +11,9 @@ public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOrder;
+
     private Date orderDate;
+
     private String status;
 
     @ManyToOne
