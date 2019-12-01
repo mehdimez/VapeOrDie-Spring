@@ -1,5 +1,7 @@
 package com.vapeordie.vapeordie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.List;
@@ -27,6 +29,7 @@ public class User {
     @Column(nullable = true)
     private String gender;
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private List<OrderProduct> orders;
 
     public User() {

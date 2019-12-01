@@ -1,5 +1,7 @@
 package com.vapeordie.vapeordie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,7 @@ public class OrderProduct {
     private User user;
     @OneToMany
     @JoinColumn(name = "id_order")
+
     private List<OrderLine> orderLines;
 
     public Long getIdOrder() {

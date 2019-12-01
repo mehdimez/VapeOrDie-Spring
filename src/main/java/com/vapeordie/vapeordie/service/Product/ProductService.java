@@ -1,4 +1,4 @@
-package com.vapeordie.vapeordie.service;
+package com.vapeordie.vapeordie.service.Product;
 
 import com.vapeordie.vapeordie.model.Category;
 import com.vapeordie.vapeordie.model.Product;
