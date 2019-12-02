@@ -1,8 +1,10 @@
 package com.vapeordie.vapeordie.controller;
 
 import com.vapeordie.vapeordie.model.User;
+import com.vapeordie.vapeordie.service.AccountService;
 import com.vapeordie.vapeordie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,15 +15,20 @@ import java.util.List;
 @RequestMapping("/rest")
 public class UserRestController {
     @Autowired
-    private UserService userService;
+    private AccountService accountService;
+    @Autowired
+    private UserService userService ;
     @GetMapping("/list")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-    @PostMapping("/add")
+
+
+    @PostMapping("/register")
     public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+        return accountService.saveUser(user);
     }
+
     @GetMapping("/user/{id}")
     public User getUserById(@PathVariable("id") long id){
         return userService.getUserById(id);
