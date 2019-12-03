@@ -2,7 +2,7 @@ package com.vapeordie.vapeordie;
 
 import com.vapeordie.vapeordie.model.Role;
 import com.vapeordie.vapeordie.model.User;
-import com.vapeordie.vapeordie.service.AccountService;
+import com.vapeordie.vapeordie.service.Account.AccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

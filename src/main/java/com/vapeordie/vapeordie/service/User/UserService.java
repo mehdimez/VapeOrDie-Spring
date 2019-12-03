@@ -1,4 +1,4 @@
-package com.vapeordie.vapeordie.service;
+package com.vapeordie.vapeordie.service.User;
 
 import com.vapeordie.vapeordie.model.User;
 

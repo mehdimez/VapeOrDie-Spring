@@ -1,7 +1,7 @@
 package com.vapeordie.vapeordie.controller;
 
 import com.vapeordie.vapeordie.model.Category;
-import com.vapeordie.vapeordie.service.CategoryService;
+import com.vapeordie.vapeordie.service.Category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

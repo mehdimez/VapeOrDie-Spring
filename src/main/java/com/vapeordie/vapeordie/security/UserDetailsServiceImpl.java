@@ -1,7 +1,7 @@
 package com.vapeordie.vapeordie.security;
 
 import com.vapeordie.vapeordie.model.User;
-import com.vapeordie.vapeordie.service.AccountService;
+import com.vapeordie.vapeordie.service.Account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

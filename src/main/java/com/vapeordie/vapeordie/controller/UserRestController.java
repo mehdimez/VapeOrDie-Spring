@@ -1,10 +1,9 @@
 package com.vapeordie.vapeordie.controller;
 
 import com.vapeordie.vapeordie.model.User;
-import com.vapeordie.vapeordie.service.AccountService;
-import com.vapeordie.vapeordie.service.UserService;
+import com.vapeordie.vapeordie.service.Account.AccountService;
+import com.vapeordie.vapeordie.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
