@@ -43,21 +43,23 @@ else if(Request.getRequestURI().equals("/login"))
         {
             filterChain.doFilter(Request,Response);
             return;
+        }else {
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SecureParam.SECRET)).build();
+            DecodedJWT decodedJWT = verifier.verify(jwt.substring(SecureParam.HEADER_PREFIX.length()));
+
+            String email = decodedJWT.getSubject();
+            List<String> roles = decodedJWT.getClaims().get("roles").asList(String.class);
+            Collection<GrantedAuthority> authorities = new ArrayList<>();
+            roles.forEach(r -> {
+                (authorities).add(new SimpleGrantedAuthority(r));
+            });
+
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(email, null, authorities);
+
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+            filterChain.doFilter(Request, Response);
         }
-JWTVerifier verifier=  JWT.require(Algorithm.HMAC256(SecureParam.SECRET)).build();
-        DecodedJWT decodedJWT = verifier.verify(jwt.substring(SecureParam.HEADER_PREFIX.length()));
-
-        String email= decodedJWT.getSubject();
-        List<String> roles = decodedJWT.getClaims().get("roles").asList(String.class);
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        roles.forEach(r->{( authorities).add(new SimpleGrantedAuthority(r));});
-
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(email,null,authorities);
-
-        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-
-        filterChain.doFilter(Request,Response);
-
 
     }
 }
