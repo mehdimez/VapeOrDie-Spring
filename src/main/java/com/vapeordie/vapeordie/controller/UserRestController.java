@@ -25,7 +25,7 @@ public class UserRestController {
     }
 
 
-
+/*test*/
     @PostMapping("/register")
     public User addUser(@RequestBody User user){
         return accountService.saveUser(user);
