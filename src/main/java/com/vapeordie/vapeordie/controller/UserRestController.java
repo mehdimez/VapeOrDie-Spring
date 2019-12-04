@@ -23,9 +23,10 @@ public class UserRestController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-
-
-/*test*/
+    @GetMapping("/products/listUsers")
+    public List<User> getTypeUsers(){
+        return userService.getTypeUsers("USER");
+    }
     @PostMapping("/register")
     public User addUser(@RequestBody User user){
         return accountService.saveUser(user);
@@ -39,7 +40,7 @@ public class UserRestController {
     public void updateUser(@Valid @RequestBody User user, @PathVariable("id") long id){
         userService.updateUser(user, id);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/products/delete/{id}")
     public void deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
     }
