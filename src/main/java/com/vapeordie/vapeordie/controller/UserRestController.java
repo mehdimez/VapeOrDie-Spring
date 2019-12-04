@@ -4,7 +4,6 @@ import com.vapeordie.vapeordie.model.User;
 import com.vapeordie.vapeordie.service.AccountService;
 import com.vapeordie.vapeordie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.convert.DataSizeUnit;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,10 +17,13 @@ public class UserRestController {
     private AccountService accountService;
     @Autowired
     private UserService userService ;
+
+
     @GetMapping("/list")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
 
 
     @PostMapping("/register")
