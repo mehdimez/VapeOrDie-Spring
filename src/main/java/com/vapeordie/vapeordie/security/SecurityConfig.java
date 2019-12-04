@@ -32,7 +32,7 @@ private UserDetailsServiceImpl userDetailsService;
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/rest/products/**","/rest/categories/**").permitAll();
+       // http.authorizeRequests().antMatchers("/rest/products/**","/rest/categories/**").permitAll();
         http.authorizeRequests().antMatchers("/login/**","/rest/register/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
        http.addFilter(new JWTAuthenticationFilter(authenticationManager()));

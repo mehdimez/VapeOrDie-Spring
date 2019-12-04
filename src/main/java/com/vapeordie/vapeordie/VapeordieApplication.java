@@ -18,7 +18,7 @@ public class VapeordieApplication {
         SpringApplication.run(VapeordieApplication.class, args);
     }
 
-    @Bean
+  /*  @Bean
     CommandLineRunner start(AccountService accountService) {
         return args -> {
             accountService.saveRole(new Role("USER"));
@@ -28,7 +28,7 @@ public class VapeordieApplication {
 
             });
         };
-    }
+    }*/
     @Bean
     BCryptPasswordEncoder getBCPE ()
     {
