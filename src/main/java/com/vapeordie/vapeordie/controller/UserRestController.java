@@ -29,7 +29,6 @@ public class UserRestController {
     public void updateUser(@Valid @RequestBody User user, @PathVariable("id") long id){
         userService.updateUser(user, id);
     }
-    
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
