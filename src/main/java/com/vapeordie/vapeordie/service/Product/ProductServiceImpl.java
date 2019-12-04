@@ -60,4 +60,10 @@ public class ProductServiceImpl implements ProductService{
     public Product getProductById(Long id) {
         return productRepository.findById(id).get();
     }
+
+	@Override
+	public List<Product> findByCategorie(Long idCategory) {
+		// TODO Auto-generated method stub
+		return productRepository.findByCategorie(idCategory);
+	}
 }
