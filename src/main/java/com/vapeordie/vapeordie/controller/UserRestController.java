@@ -23,7 +23,6 @@ public class UserRestController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-
     @GetMapping("/products/listUsers")
     public List<User> getTypeUsers(){
         return userService.getTypeUsers("USER");
