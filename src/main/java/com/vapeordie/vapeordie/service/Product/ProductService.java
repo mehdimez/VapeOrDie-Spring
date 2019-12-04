@@ -1,4 +1,4 @@
-package com.vapeordie.vapeordie.service;
+package com.vapeordie.vapeordie.service.Product;
 
 import com.vapeordie.vapeordie.model.Category;
 import com.vapeordie.vapeordie.model.Product;
@@ -12,4 +12,5 @@ public interface ProductService {
     public Product addProduct(Product product, Long idCategory);
     public Product getProductById(Long id);
     public List<Category> getAllCategories();
+    public List<Product> findByCategorie(Long idCategory);
 }

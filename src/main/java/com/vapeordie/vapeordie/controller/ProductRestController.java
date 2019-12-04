@@ -2,8 +2,7 @@ package com.vapeordie.vapeordie.controller;
 
 import com.vapeordie.vapeordie.model.Category;
 import com.vapeordie.vapeordie.model.Product;
-import com.vapeordie.vapeordie.service.CategoryService;
-import com.vapeordie.vapeordie.service.ProductService;
+import com.vapeordie.vapeordie.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +38,9 @@ public class ProductRestController {
     @GetMapping("/products/categoriesList")
     public List<Category> getAllCategories(){
         return productService.getAllCategories();
+    }
+    @GetMapping("/products/productsByCategories/{idCategory}")
+    public List<Product> getBroductsByCategorie(@PathVariable("idCategory") long idCategory){
+        return productService.findByCategorie(idCategory);
     }
 }
