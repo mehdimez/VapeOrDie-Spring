@@ -1,6 +1,7 @@
 package com.vapeordie.vapeordie.service;
 
 import com.vapeordie.vapeordie.model.User;
+import com.vapeordie.vapeordie.repository.RoleRepository;
 import com.vapeordie.vapeordie.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService{
     public User getUserById(Long id) {
         return userRepository.findById(id).get();
     }
+
+	@Override
+	public List<User> getTypeUsers(String type) {
+		// TODO Auto-generated method stub
+		return userRepository.findUsers(type);
+	}
 }

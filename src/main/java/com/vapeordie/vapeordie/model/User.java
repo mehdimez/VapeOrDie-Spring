@@ -1,16 +1,21 @@
 package com.vapeordie.vapeordie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Email
-    @Column(nullable = false, unique = true)
+    private long idUser;
+    @Column(unique = true)
     private String email;
     @Column(nullable = true)
     private String firstName;
@@ -21,6 +26,7 @@ public class User {
     @Column(nullable = true)
     private String adress;
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     private String password;
     @Column(nullable = true)
     private String dateOfBirth;
@@ -28,11 +34,27 @@ public class User {
     private String gender;
     @OneToMany(mappedBy = "user")
     private List<OrderProduct> orders;
+@ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     public User() {
 
     }
-    public User(String firstName,String lastName,String email, String password,String dateOfBirth,String gender) {
+
+    public User(String email, String firstName, String lastName, String phoneNumber, String adress, String password, String dateOfBirth, String gender, List<OrderProduct> orders, Collection<Role> roles) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.adress = adress;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.orders = orders;
+        this.roles = roles;
+    }
+
+    public User(String firstName, String lastName, String email, String password, String dateOfBirth, String gender) {
         super();
         this.email = email;
         this.firstName = firstName;
@@ -59,12 +81,12 @@ public class User {
         this.gender = gender;
     }
 
-    public Long getId() {
-        return id;
+    public long getIdUser() {
+        return idUser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
     }
 
     public String getEmail() {
@@ -137,5 +159,13 @@ public class User {
 
     public void setOrders(List<OrderProduct> orders) {
         this.orders = orders;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }
