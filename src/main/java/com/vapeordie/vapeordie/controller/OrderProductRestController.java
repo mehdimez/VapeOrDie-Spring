@@ -15,6 +15,7 @@ import com.vapeordie.vapeordie.service.Product.ProductService;
 import com.vapeordie.vapeordie.service.User.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -41,19 +42,23 @@ public class OrderProductRestController {
     private OrderLineRepository orderLineService;
 
     @PostMapping("/orderProducts")
-    public Object addOrderProduct(@RequestBody String orderProductObject) throws JsonProcessingException {
+    public HttpStatus addOrderProduct(@RequestBody String orderProductObject) throws JsonProcessingException {
         OrderProductDto orderDto = new ObjectMapper().setDateFormat(simpleDateFormat).readValue(orderProductObject, OrderProductDto.class);
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setStatus(orderDto.status);
         orderProduct.setOrderDate(orderDto.date);
         orderProduct.setUser(userService.getUserById(orderDto.userId));
         orderProduct = orderProductService.addOrderProduct(orderProduct);
+        double price = 0;
         int productAdded = 0;
         for (ProductQteDto product : orderDto.products) {
             if (!checkProductQte(product.getId(), product.getQte()))
                 continue;
             OrderLine newOrderLine = new OrderLine();
-            newOrderLine.setProduct(productService.getProductById(product.getId()));
+            Product productToSet = productService.getProductById(product.getId());
+            newOrderLine.setProduct(productToSet);
+            price = productToSet.getPrice() * product.getQte();
+            newOrderLine.setPrice(price);
             newOrderLine.setQuantity(product.getQte());
             newOrderLine.setOrderProduct(orderProduct);
             orderLineService.saveAndFlush(newOrderLine);
@@ -62,9 +67,9 @@ public class OrderProductRestController {
         }
         if (productAdded == 0) {
             orderProductService.deleteOrderProduct(orderProduct.getIdOrder());
-            return "failed";
+            return HttpStatus.NOT_ACCEPTABLE;
         } else {
-            return "done";
+            return HttpStatus.ACCEPTED;
         }
 
     }
