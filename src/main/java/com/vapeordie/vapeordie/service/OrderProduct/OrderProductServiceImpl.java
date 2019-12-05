@@ -16,7 +16,9 @@ public class OrderProductServiceImpl implements OrderProductService {
     private OrderProductRepository orderProductRepository;
 
     @Override
-    public List<OrderProduct> getAllOrderProduct() { return orderProductRepository.findAll();}
+    public List<OrderProduct> getAllOrderProduct() {
+        return orderProductRepository.findAll();
+    }
 
     @Override
     public OrderProduct updateOrderProduct(OrderProduct orderProduct, Long id) {
@@ -26,11 +28,17 @@ public class OrderProductServiceImpl implements OrderProductService {
     }
 
     @Override
-    public void deleteOrderProduct(Long id) { orderProductRepository.deleteById(id);}
+    public void deleteOrderProduct(Long id) {
+        orderProductRepository.deleteById(id);
+    }
 
     @Override
-    public OrderProduct addOrderProduct(OrderProduct orderProduct) { return orderProductRepository.saveAndFlush(orderProduct);}
+    public OrderProduct addOrderProduct(OrderProduct orderProduct) {
+        return orderProductRepository.saveAndFlush(orderProduct);
+    }
 
     @Override
-    public OrderProduct getOrderProductById(Long id) { return orderProductRepository.findById(id).get();}
+    public OrderProduct getOrderProductById(Long id) {
+        return orderProductRepository.findById(id).get();
+    }
 }

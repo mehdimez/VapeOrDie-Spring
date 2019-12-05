@@ -1,6 +1,10 @@
 package com.vapeordie.vapeordie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class OrderLine {
@@ -10,11 +14,10 @@ public class OrderLine {
     @ManyToOne
     @JoinColumn(name = "idProduct")
     private Product product;
+    @ManyToOne
+    private OrderProduct orderProduct;
     private int quantity;
     private double price;
-
-    public OrderLine() {
-    }
 
     public Long getId() {
         return id;
@@ -46,5 +49,13 @@ public class OrderLine {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public OrderProduct getOrderProduct() {
+        return orderProduct;
+    }
+
+    public void setOrderProduct(OrderProduct orderProduct) {
+        this.orderProduct = orderProduct;
     }
 }

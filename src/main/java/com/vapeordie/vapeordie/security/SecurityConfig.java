@@ -16,10 +16,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder= new BCryptPasswordEncoder();
-
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 
     @Override
@@ -32,10 +31,10 @@ private UserDetailsServiceImpl userDetailsService;
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/rest/products/**","/rest/categories/**").permitAll();
-        http.authorizeRequests().antMatchers("/login/**","/rest/register/**").permitAll();
-        http.authorizeRequests().anyRequest().authenticated();
-       http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+        http.authorizeRequests().antMatchers("/rest/products/**", "/rest/categories/**").permitAll();
+        http.authorizeRequests().antMatchers("/login/**", "/rest/register/**").permitAll();
+        //   http.authorizeRequests().anyRequest().authenticated();
+        http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
         http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }

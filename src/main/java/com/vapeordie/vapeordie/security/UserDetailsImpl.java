@@ -16,7 +16,7 @@ public class UserDetailsImpl implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
