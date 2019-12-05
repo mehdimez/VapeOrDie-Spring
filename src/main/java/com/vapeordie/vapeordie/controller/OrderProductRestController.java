@@ -8,6 +8,7 @@ import com.vapeordie.vapeordie.dto.OrderProductDto;
 import com.vapeordie.vapeordie.dto.ProductQteDto;
 import com.vapeordie.vapeordie.model.OrderLine;
 import com.vapeordie.vapeordie.model.OrderProduct;
+import com.vapeordie.vapeordie.model.Product;
 import com.vapeordie.vapeordie.repository.OrderLineRepository;
 import com.vapeordie.vapeordie.service.OrderProduct.OrderProductService;
 import com.vapeordie.vapeordie.service.Product.ProductService;
@@ -47,14 +48,36 @@ public class OrderProductRestController {
         orderProduct.setOrderDate(orderDto.date);
         orderProduct.setUser(userService.getUserById(orderDto.userId));
         orderProduct = orderProductService.addOrderProduct(orderProduct);
+        int productAdded = 0;
         for (ProductQteDto product : orderDto.products) {
+            if (!checkProductQte(product.getId(), product.getQte()))
+                continue;
             OrderLine newOrderLine = new OrderLine();
             newOrderLine.setProduct(productService.getProductById(product.getId()));
             newOrderLine.setQuantity(product.getQte());
             newOrderLine.setOrderProduct(orderProduct);
             orderLineService.saveAndFlush(newOrderLine);
+            setQte(product.getId(), product.getQte());
+            productAdded++;
         }
-        return "done";
+        if (productAdded == 0) {
+            orderProductService.deleteOrderProduct(orderProduct.getIdOrder());
+            return "failed";
+        } else {
+            return "done";
+        }
+
+    }
+
+    public boolean checkProductQte(long productId, int qte) {
+        return (productService.getProductById(productId).getQuantity() >= qte) ? true : false;
+    }
+
+    public void setQte(long productId, int qte) {
+        Product product = productService.getProductById(productId);
+        System.out.println("old qte : " + product.getQuantity() + " new qte : " + (product.getQuantity() - qte));
+        product.setQuantity(product.getQuantity() - qte);
+        productService.updateProduct(product, product.getIdProduct(), product.getCategory().getIdCategory());
     }
 
     @GetMapping("/orderProducts")
