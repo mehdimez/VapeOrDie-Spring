@@ -43,7 +43,7 @@ public class UserRestController {
     public void deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
     }
-    @GetMapping("/products/listUsers")
+    @GetMapping("/user/listUsers")
     public List<User> getTypeUsers(){
         return userService.getTypeUsers("USER");
     }
