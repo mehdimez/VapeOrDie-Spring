@@ -30,7 +30,7 @@ private BCryptPasswordEncoder bCryptPasswordEncoder ;
         System.out.println("theeeleethhhh");
         userRepository.save(user);
         System.out.println("eeraaabaaaaaa");
-        addRoleToUser(user.getEmail(),"ADMIN");
+        addRoleToUser(user.getEmail(),"USER");
         return user ;
 
     }
