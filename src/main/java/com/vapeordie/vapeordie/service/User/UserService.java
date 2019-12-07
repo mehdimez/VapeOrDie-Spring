@@ -10,4 +10,5 @@ public interface UserService {
     public void deleteUser(Long id);
     public User addUser(User user);
     public User getUserById(Long id);
+    public User getUserByEmail(String email);
 }

@@ -16,32 +16,38 @@ public class UserRestController {
     @Autowired
     private AccountService accountService;
     @Autowired
-    private UserService userService ;
+    private UserService userService;
 
 
     @GetMapping("/list")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
 
-
     @PostMapping("/register")
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         return accountService.saveUser(user);
     }
 
     @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable("id") long id){
+    public User getUserById(@PathVariable("id") long id) {
         return userService.getUserById(id);
     }
+
     @PutMapping("/update/{id}")
-    public void updateUser(@Valid @RequestBody User user, @PathVariable("id") long id){
+    public void updateUser(@Valid @RequestBody User user, @PathVariable("id") long id) {
         userService.updateUser(user, id);
     }
+
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable("id") long id){
+    public void deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/usermail/{email}")
+    public User getUserByEmail(@PathVariable("email") String email){
+        return userService.getUserByEmail(email);
     }
 
 }

@@ -21,7 +21,7 @@ public class OrderProduct {
 
     private User user;
     @OneToMany
-    @JoinColumn(name = "id_order")
+    @JsonIgnoreProperties("orderLines")
     private List<OrderLine> orderLines;
 
     public Long getIdOrder() {

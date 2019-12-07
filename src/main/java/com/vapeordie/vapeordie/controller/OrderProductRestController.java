@@ -52,17 +52,17 @@ public class OrderProductRestController {
         double price = 0;
         int productAdded = 0;
         for (ProductQteDto product : orderDto.products) {
-            if (!checkProductQte(product.getId(), product.getQte()))
+            if (!checkProductQte(product.getIdProduct(), product.getQteProduct()))
                 continue;
             OrderLine newOrderLine = new OrderLine();
-            Product productToSet = productService.getProductById(product.getId());
+            Product productToSet = productService.getProductById(product.getIdProduct());
             newOrderLine.setProduct(productToSet);
-            price = productToSet.getPrice() * product.getQte();
+            price = productToSet.getPrice() * product.getQteProduct();
             newOrderLine.setPrice(price);
-            newOrderLine.setQuantity(product.getQte());
+            newOrderLine.setQuantity(product.getQteProduct());
             newOrderLine.setOrderProduct(orderProduct);
             orderLineService.saveAndFlush(newOrderLine);
-            setQte(product.getId(), product.getQte());
+            setQte(product.getIdProduct(), product.getQteProduct());
             productAdded++;
         }
         if (productAdded == 0) {

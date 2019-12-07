@@ -42,11 +42,11 @@ public class OrderProductDto
         this.date = date;
     }
 
-    public List<ProductQteDto> getProductsId() {
+    public List<ProductQteDto> getProducts() {
         return products;
     }
 
-    public void setProductsId(List<ProductQteDto> products) {
+    public void setProducts(List<ProductQteDto> products) {
         this.products = products;
     }
 
