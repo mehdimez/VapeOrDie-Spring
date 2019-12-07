@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -45,8 +46,9 @@ public class OrderProductRestController {
     public HttpStatus addOrderProduct(@RequestBody String orderProductObject) throws JsonProcessingException {
         OrderProductDto orderDto = new ObjectMapper().setDateFormat(simpleDateFormat).readValue(orderProductObject, OrderProductDto.class);
         OrderProduct orderProduct = new OrderProduct();
+        Date date = new Date();
         orderProduct.setStatus(orderDto.status);
-        orderProduct.setOrderDate(orderDto.date);
+        orderProduct.setOrderDate(date);
         orderProduct.setUser(userService.getUserById(orderDto.userId));
         orderProduct = orderProductService.addOrderProduct(orderProduct);
         double price = 0;

@@ -16,11 +16,9 @@ public class OrderProduct {
     private String status;
 
     @ManyToOne
-
     @JoinColumn(name = "idUser")
-
     private User user;
-    @OneToMany
+    @OneToMany(mappedBy = "orderProduct")
     @JsonIgnoreProperties("orderLines")
     private List<OrderLine> orderLines;
 

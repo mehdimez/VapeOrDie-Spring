@@ -5,10 +5,10 @@ public class ProductQteDto {
     private long idProduct;
     private int qteProduct;
 
-    public  ProductQteDto()
-    {
+    public ProductQteDto() {
 
     }
+
     public ProductQteDto(long idProduct, int qteProduct) {
         this.idProduct = idProduct;
         this.qteProduct = qteProduct;
