@@ -1,6 +1,7 @@
 package com.vapeordie.vapeordie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Fetch;
 
@@ -33,8 +34,9 @@ public class User {
     @Column(nullable = true)
     private String gender;
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private List<OrderProduct> orders;
-@ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
     public User() {
@@ -63,13 +65,15 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
     }
+
     public User(String email, String password) {
         super();
         this.email = email;
         this.password = password;
     }
-    public User( String email, String firstName, String lastName, String phoneNumber, String adress,
-                 String password, String dateOfBirth, String gender) {
+
+    public User(String email, String firstName, String lastName, String phoneNumber, String adress,
+                String password, String dateOfBirth, String gender) {
         super();
         this.email = email;
         this.firstName = firstName;

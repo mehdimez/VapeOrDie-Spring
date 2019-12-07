@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
@@ -42,7 +42,11 @@ public class UserServiceImpl implements UserService{
     public User addUser(User user) {
         return userRepository.saveAndFlush(user);
     }
-
+    @Override
+    public List<User> getTypeUsers(String type) {
+        // TODO Auto-generated method stub
+        return userRepository.findUsers(type);
+    }
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id).get();
