@@ -47,4 +47,9 @@ public class UserRestController {
     public List<User> getTypeUsers(){
         return userService.getTypeUsers("USER");
     }
+
+    @GetMapping("/usermail/{email}")
+    public User getUserByEmail(@PathVariable("email") String email){
+        return userService.getUserByEmail(email);
+    }
 }
