@@ -17,10 +17,13 @@ public class UserRestController {
     private AccountService accountService;
     @Autowired
     private UserService userService ;
+
+
     @GetMapping("/list")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+
 
 
     @PostMapping("/register")

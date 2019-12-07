@@ -39,4 +39,8 @@ public class ProductRestController {
     public List<Category> getAllCategories(){
         return productService.getAllCategories();
     }
+    @GetMapping("/products/productsByCategories/{idCategory}")
+    public List<Product> getBroductsByCategorie(@PathVariable("idCategory") long idCategory){
+        return productService.findByCategorie(idCategory);
+    }
 }

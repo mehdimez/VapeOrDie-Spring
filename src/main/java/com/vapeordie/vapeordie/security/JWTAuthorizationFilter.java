@@ -26,7 +26,24 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest Request, HttpServletResponse Response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        Response.addHeader("Access-Control-Allow-Origins","*");
+      Response.addHeader("Access-Control-Allow-Origin","*");
+Response.addHeader("Access-Control-Allow-Headers","Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, authorization");
+Response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Origin, Access-Control-Allow-Credentials, authorization");
+Response.addHeader("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,PATCH");
+
+
+if(Request.getMethod().equals("OPTIONS"))
+{Response.setStatus(HttpServletResponse.SC_OK);
+}
+
+
+
+else if(Request.getRequestURI().equals("/login"))
+{
+    filterChain.doFilter(Request,Response);
+    return ;
+}else
+{
 
 
         String jwt = Request.getHeader(SecureParam.HEADER_NAME);
@@ -51,4 +68,4 @@ JWTVerifier verifier=  JWT.require(Algorithm.HMAC256(SecureParam.SECRET)).build(
 
 
     }
-}
+}}
