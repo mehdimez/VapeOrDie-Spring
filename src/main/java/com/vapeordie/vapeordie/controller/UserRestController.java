@@ -50,4 +50,8 @@ public class UserRestController {
         return userService.getUserByEmail(email);
     }
 
+    @GetMapping("/user/listUsers")
+    public List<User> getTypeUsers(){
+        return userService.getTypeUsers("USER");
+    }
 }

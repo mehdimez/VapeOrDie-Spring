@@ -35,6 +35,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         } else if (Request.getRequestURI().equals("/login")) {
             filterChain.doFilter(Request, Response);
             return;
+
         } else {
 
             String jwt = Request.getHeader(SecureParam.HEADER_NAME);
