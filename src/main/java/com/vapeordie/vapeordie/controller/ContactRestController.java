@@ -27,7 +27,6 @@ public class ContactRestController {
 
     @PostMapping("/contact")
     public void sendEmail(@RequestBody Data message) {
-        System.out.println("hiiiiiiiiii");
         // send notification
         try {
             notificationService.sendFeedback(message);

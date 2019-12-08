@@ -16,12 +16,9 @@ public class OrderProduct {
     private String status;
 
     @ManyToOne
-
     @JoinColumn(name = "idUser")
-
     private User user;
-    @OneToMany
-    @JoinColumn(name = "id_order")
+    @OneToMany(mappedBy = "orderProduct")
     private List<OrderLine> orderLines;
 
     public Long getIdOrder() {
