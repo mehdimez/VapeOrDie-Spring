@@ -10,15 +10,21 @@ import com.vapeordie.vapeordie.model.OrderLine;
 import com.vapeordie.vapeordie.model.OrderProduct;
 import com.vapeordie.vapeordie.model.Product;
 import com.vapeordie.vapeordie.repository.OrderLineRepository;
+import com.vapeordie.vapeordie.service.NotificationService;
 import com.vapeordie.vapeordie.service.OrderProduct.OrderProductService;
 import com.vapeordie.vapeordie.service.Product.ProductService;
 import com.vapeordie.vapeordie.service.User.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,7 +34,7 @@ import java.util.List;
 
 public class OrderProductRestController {
 
-
+    private Logger logger = LoggerFactory.getLogger(OrderProductRestController.class);
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Autowired
@@ -40,6 +46,9 @@ public class OrderProductRestController {
 
     @Autowired
     private OrderLineRepository orderLineService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @PostMapping("/orderProducts")
     public HttpStatus addOrderProduct(@RequestBody String orderProductObject) throws JsonProcessingException {
@@ -69,6 +78,13 @@ public class OrderProductRestController {
             orderProductService.deleteOrderProduct(orderProduct.getIdOrder());
             return HttpStatus.NOT_ACCEPTABLE;
         } else {
+            // send notification
+                try{
+                    notificationService.sendNotification(userService.getUserById(orderDto.userId),orderProduct);
+                }catch (MailException ex){
+                    logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Erreur email: "+ex.getMessage());
+                }
+            //return confirmation
             return HttpStatus.ACCEPTED;
         }
 
