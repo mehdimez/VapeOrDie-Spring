@@ -22,7 +22,7 @@ public class VapeordieApplication {
     {
         return new  BCryptPasswordEncoder() ;
     }
-    /*@Bean
+   /* @Bean
     CommandLineRunner start(AccountService accountService) {
         return args -> {
             accountService.saveRole(new Role("USER"));
