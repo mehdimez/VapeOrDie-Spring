@@ -16,9 +16,7 @@ public class CategoryRestController {
     private CategoryService categoryService;
 
     @GetMapping("/categories")
-    public List<Category> getAllCategories() {
-        return categoryService.getAllCategories();
-    }
+    public List<Category> getAllCategories() {return categoryService.getAllCategories();}
 
     @GetMapping("/categories/{id}")
     public Category getCategoryById(@PathVariable("id") long id) {

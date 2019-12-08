@@ -2,8 +2,12 @@ package com.vapeordie.vapeordie.controller;
 
 import com.vapeordie.vapeordie.model.Category;
 import com.vapeordie.vapeordie.model.Product;
+import com.vapeordie.vapeordie.service.NotificationService;
 import com.vapeordie.vapeordie.service.Product.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +16,10 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/rest")
 public class ProductRestController {
+    private Logger logger = LoggerFactory.getLogger(OrderProductRestController.class);
+
+    @Autowired
+    private NotificationService notificationService;
     @Autowired
     private ProductService productService;
     @GetMapping("/products")

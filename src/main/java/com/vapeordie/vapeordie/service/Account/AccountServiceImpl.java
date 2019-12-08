@@ -51,7 +51,6 @@ private BCryptPasswordEncoder bCryptPasswordEncoder ;
     public void addRoleToUser(String email, String roleName) {
         User user = userRepository.findUsersByEmail(email);
         Role role = roleRepository.findByRoleName(roleName);
-
         user.getRoles().add(role);
 
     }

@@ -31,10 +31,10 @@ public class UserRestController {
         return accountService.saveUser(user);
     }
 
-    @GetMapping("/user/{id}")
+    /*@GetMapping("/user/{id}")
     public User getUserById(@PathVariable("id") long id){
         return userService.getUserById(id);
-    }
+    }*/
     @PutMapping("/update/{id}")
     public void updateUser(@Valid @RequestBody User user, @PathVariable("id") long id){
         userService.updateUser(user, id);
@@ -47,9 +47,15 @@ public class UserRestController {
     public List<User> getTypeUsers(){
         return userService.getTypeUsers("USER");
     }
+    @PostMapping("/addAdmin")
+    public User addAdmin(@RequestBody User user){
+        return null;
+    }
 
-    @GetMapping("/usermail/{email}")
+    @GetMapping("/user/{email}")
     public User getUserByEmail(@PathVariable("email") String email){
         return userService.getUserByEmail(email);
     }
+
+
 }
