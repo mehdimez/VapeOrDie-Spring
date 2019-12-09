@@ -2,31 +2,31 @@ package com.vapeordie.vapeordie.dto;
 
 public class ProductQteDto {
 
-    private long idProduct;
+    private long id;
     private int qteProduct;
 
     public  ProductQteDto()
     {
 
     }
-    public ProductQteDto(long idProduct, int qteProduct) {
-        this.idProduct = idProduct;
+    public ProductQteDto(long id, int qteProduct) {
+        this.id = id;
         this.qteProduct = qteProduct;
     }
 
-    public long getIdProduct() {
-        return idProduct;
+    public long getId() {
+        return id;
     }
 
-    public void setIdProduct(long idProduct) {
-        this.idProduct = idProduct;
+    public void setId(long idProduct) {
+        this.id = idProduct;
     }
 
-    public int getQteProduct() {
+    public int getQte() {
         return qteProduct;
     }
 
-    public void setQteProduct(int qteProduct) {
+    public void setQte(int qteProduct) {
         this.qteProduct = qteProduct;
     }
 }
