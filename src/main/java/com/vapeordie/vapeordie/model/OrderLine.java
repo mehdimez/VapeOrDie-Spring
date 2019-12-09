@@ -15,6 +15,7 @@ public class OrderLine {
     @JoinColumn(name = "idProduct")
     private Product product;
     @ManyToOne
+    @JoinColumn(name = "idOrder")
     private OrderProduct orderProduct;
     private int quantity;
     private double price;

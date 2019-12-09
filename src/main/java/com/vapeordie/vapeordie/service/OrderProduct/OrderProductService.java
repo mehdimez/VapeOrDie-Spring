@@ -10,4 +10,5 @@ public interface OrderProductService {
     public void deleteOrderProduct(Long id);
     public OrderProduct addOrderProduct(OrderProduct orderProduct);
     public OrderProduct getOrderProductById(Long id);
+    public List<OrderProduct> OrderbyUser(long idUser);
 }

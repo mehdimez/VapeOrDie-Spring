@@ -54,8 +54,8 @@ public class OrderProductRestController {
     public HttpStatus addOrderProduct(@RequestBody String orderProductObject) throws JsonProcessingException {
         OrderProductDto orderDto = new ObjectMapper().setDateFormat(simpleDateFormat).readValue(orderProductObject, OrderProductDto.class);
         OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setStatus(orderDto.status);
-        orderProduct.setOrderDate(orderDto.date);
+        orderProduct.setStatus("en attente de confirmartion");
+        orderProduct.setOrderDate(new Date());
         orderProduct.setUser(userService.getUserById(orderDto.userId));
         orderProduct = orderProductService.addOrderProduct(orderProduct);
         double price = 0;
@@ -122,5 +122,9 @@ public class OrderProductRestController {
     @GetMapping("/orderProducts/{id}")
     public OrderProduct getOrderProductById(@PathVariable Long id) {
         return orderProductService.getOrderProductById(id);
+    }
+    @GetMapping("/ordersByUser/{idUser}")
+    public List<OrderProduct> ordersByUser(@PathVariable("idUser") Long idUser) {
+        return orderProductService.OrderbyUser(idUser);
     }
 }
