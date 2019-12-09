@@ -1,5 +1,6 @@
 package com.vapeordie.vapeordie.service;
 
+import com.vapeordie.vapeordie.model.Data;
 import com.vapeordie.vapeordie.model.OrderProduct;
 import com.vapeordie.vapeordie.model.User;
 import org.hibernate.criterion.Order;
@@ -25,7 +26,17 @@ public class NotificationService {
         mail.setTo(user.getEmail());
         mail.setFrom("no-reply@vapeOrdie.com");
         mail.setSubject("Order confirmation");
-        mail.setText("Hello "+user.getFirstName()+" "+user.getLastName()+", your order in our VapeOrDie store has been confirmed, we will contact you via Email or via the mobile phone you provided. Thank you. Order id: "+order.getIdOrder());
+        mail.setText("Hello "+user.getFirstName()+" "+user.getLastName()+",\n your order in our VapeOrDie store has been confirmed, we will contact you via Email or via the mobile phone you provided.\n Thank you.\n \n Order id: "+order.getIdOrder());
+        javaMAilSender.send(mail);
+    }
+
+    public void sendFeedback(Data data){
+        // send mail
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo("vapeordie123@gmail.com");
+        mail.setFrom("no-reply@vapeOrdie.com");
+        mail.setSubject("User message");
+        mail.setText("User Email: "+data.getEmail()+"\n"+"Message: "+data.getMessage());
         javaMAilSender.send(mail);
     }
 }
